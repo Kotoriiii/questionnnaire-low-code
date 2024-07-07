@@ -1,7 +1,6 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Button, Space, Divider, Tag, Popconfirm, Modal, message } from 'antd'
-import styles from './QuestionCard.module.scss'
 import {
   CopyOutlined,
   DeleteOutlined,
@@ -10,6 +9,9 @@ import {
   LineChartOutlined,
   StarOutlined,
 } from '@ant-design/icons'
+import { updateQuestionService } from '../service/question'
+import { useRequest } from 'ahooks'
+import styles from './QuestionCard.module.scss'
 
 type PropsType = {
   _id: string
@@ -25,6 +27,21 @@ const { confirm } = Modal
 const QuestionCard: FC<PropsType> = props => {
   const navigate = useNavigate()
   const { _id, title, answerCount, isPublished, createdAt, isStar } = props
+
+  // 修改 标星
+  const [isStarState, setIsStarState] = useState(isStar)
+  const { loading: changeStarLoading, run: changeStar } = useRequest(
+    async () => {
+      await updateQuestionService(_id, { isStar: !isStarState })
+    },
+    {
+      manual: true,
+      onSuccess() {
+        setIsStarState(!isStarState) // 更新 state
+        message.success('已更新')
+      },
+    }
+  )
 
   const duplicate = () => {
     message.success('复制成功')
@@ -44,7 +61,7 @@ const QuestionCard: FC<PropsType> = props => {
         <div className={styles.left}>
           <Link to={isPublished ? `/question/stat/${_id}` : `/question/edit/${_id}`}>
             <Space>
-              {isStar && <StarOutlined style={{ color: 'red' }} />}
+              {isStarState && <StarOutlined style={{ color: 'red' }} />}
               {title}
             </Space>
           </Link>
@@ -82,8 +99,14 @@ const QuestionCard: FC<PropsType> = props => {
         </div>
         <div className={styles.right}>
           <Space>
-            <Button type="text" icon={<StarOutlined />} size="small">
-              {isStar ? '取消标星' : '标星'}
+            <Button
+              type="text"
+              icon={<StarOutlined />}
+              size="small"
+              onClick={changeStar}
+              disabled={changeStarLoading}
+            >
+              {isStarState ? '取消标星' : '标星'}
             </Button>
             <Popconfirm
               title="确定复制该问卷？"
