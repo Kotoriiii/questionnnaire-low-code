@@ -1,51 +1,19 @@
-import { FC, useState } from 'react'
-import styles from './common.module.scss'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { FC } from 'react'
 import QuestionCard from '../../components/QuestionCard'
 import ListSearch from '../../components/ListSearch'
-import { Typography } from 'antd'
+import { Spin, Typography } from 'antd'
 import { useTitle } from 'ahooks'
+import useLoadingQuestionListData from '../../hooks/useLoadQuestionListData'
+import styles from './common.module.scss'
 
 const { Title } = Typography
-
-const rawQuestionList = [
-  {
-    _id: 'q1',
-    title: '问卷1',
-    isPublished: false,
-    isStar: false,
-    answerCount: 5,
-    createdAt: '3月10日13:23',
-  },
-  {
-    _id: 'q2',
-    title: '问卷2',
-    isPublished: true,
-    isStar: true,
-    answerCount: 3,
-    createdAt: '4月9日13:23',
-  },
-  {
-    _id: 'q3',
-    title: '问卷3',
-    isPublished: false,
-    isStar: false,
-    answerCount: 10,
-    createdAt: '10月10日13:23',
-  },
-  {
-    _id: 'q4',
-    title: '问卷4',
-    isPublished: true,
-    isStar: true,
-    answerCount: 13,
-    createdAt: '2月16日13:23',
-  },
-]
 
 const List: FC = () => {
   useTitle('我的问卷')
 
-  const [questionList, setQuestionList] = useState(rawQuestionList)
+  const { data = {}, loading } = useLoadingQuestionListData()
+  const { list = [], total = 0 } = data
 
   return (
     <>
@@ -58,8 +26,15 @@ const List: FC = () => {
         </div>
       </div>
       <div className={styles.content}>
-        {questionList.length > 0 &&
-          questionList.map(q => {
+        {loading && (
+          <div style={{ textAlign: 'center' }}>
+            <Spin />
+          </div>
+        )}
+        {/* 问卷列表 */}
+        {!loading &&
+          list.length > 0 &&
+          list.map((q: any) => {
             const { _id } = q
             return <QuestionCard key={_id} {...q} />
           })}

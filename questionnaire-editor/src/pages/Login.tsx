@@ -32,6 +32,8 @@ function getUserInfoFromStorage() {
 const Login: FC = () => {
   const [form] = Form.useForm()
 
+  const navigate = useNavigate()
+
   useEffect(() => {
     const { username, password } = getUserInfoFromStorage()
     form.setFieldsValue({ username, password })
