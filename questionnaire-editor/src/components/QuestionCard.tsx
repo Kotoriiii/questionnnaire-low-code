@@ -9,7 +9,7 @@ import {
   LineChartOutlined,
   StarOutlined,
 } from '@ant-design/icons'
-import { updateQuestionService } from '../service/question'
+import { duplicateQuestionService, updateQuestionService } from '../service/question'
 import { useRequest } from 'ahooks'
 import styles from './QuestionCard.module.scss'
 
@@ -43,17 +43,41 @@ const QuestionCard: FC<PropsType> = props => {
     }
   )
 
-  const duplicate = () => {
-    message.success('复制成功')
-  }
+  // 复制
+  const { loading: duplicateLoading, run: duplicate } = useRequest(
+    async () => await duplicateQuestionService(_id),
+    {
+      manual: true,
+      onSuccess(result) {
+        message.success('复制成功')
+        navigate(`/question/edit/${result.id}`) // 跳转到问卷编辑页
+      },
+    }
+  )
+
+  // 删除
+  const [isDeletedState, setIsDeletedState] = useState(false)
+  const { loading: deleteLoading, run: deleteQuestion } = useRequest(
+    async () => await updateQuestionService(_id, { isDeleted: true }),
+    {
+      manual: true,
+      onSuccess() {
+        message.success('删除成功')
+        setIsDeletedState(true)
+      },
+    }
+  )
 
   const del = () => {
     confirm({
       title: '确定删除该问卷？',
       icon: <ExclamationCircleOutlined />,
-      onOk: () => message.success('删除成功'),
+      onOk: deleteQuestion,
     })
   }
+
+  // 已经删除的问卷，不要再渲染卡片了
+  if (isDeletedState) return null
 
   return (
     <div className={styles.container}>
@@ -114,11 +138,17 @@ const QuestionCard: FC<PropsType> = props => {
               cancelText="取消"
               onConfirm={duplicate}
             >
-              <Button type="text" icon={<CopyOutlined />} size="small">
+              <Button type="text" icon={<CopyOutlined />} size="small" disabled={duplicateLoading}>
                 复制
               </Button>
             </Popconfirm>
-            <Button type="text" icon={<DeleteOutlined />} size="small" onClick={del}>
+            <Button
+              type="text"
+              icon={<DeleteOutlined />}
+              size="small"
+              onClick={del}
+              disabled={deleteLoading}
+            >
               删除
             </Button>
           </Space>
