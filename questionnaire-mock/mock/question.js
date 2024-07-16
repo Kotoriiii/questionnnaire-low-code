@@ -1,5 +1,6 @@
 const Mock = require("mockjs");
 const getQuestionList = require("./data/getQuestionList");
+const getComponentList = require("./data/getComponentList");
 
 const Random = Mock.Random;
 
@@ -14,20 +15,7 @@ module.exports = [
         data: {
           id: Random.id(),
           title: Random.ctitle(),
-          componentList: [
-            {
-              fe_id: Random.id(),
-              type: "questionTitle",
-              title: "标题",
-              props: { text: "个人信息调研", level: 1, isCenter: false },
-            },
-            {
-              fe_id: Random.id(),
-              type: "questionInput",
-              title: "输入框",
-              props: { title: "你的姓名", placeholder: "请输入姓名..." },
-            },
-          ],
+          componentList: getComponentList(),
         },
       };
     },

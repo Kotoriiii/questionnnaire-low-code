@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { Button, Typography, Space, Input, message } from 'antd'
 import { LeftOutlined, EditOutlined, LoadingOutlined } from '@ant-design/icons'
+import EditToolbar from './EditToolbar'
 import styles from './EditHeader.module.scss'
 
 const { Title } = Typography
@@ -21,7 +22,9 @@ const EditHeader: FC = () => {
             <Title>问卷标题</Title>
           </Space>
         </div>
-        <div className={styles.main}></div>
+        <div className={styles.main}>
+          <EditToolbar />
+        </div>
         <div className={styles.right}>
           <Space>
             <Button>保存</Button>
