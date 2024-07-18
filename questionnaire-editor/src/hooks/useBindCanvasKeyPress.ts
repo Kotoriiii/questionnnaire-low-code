@@ -1,5 +1,6 @@
 import { useKeyPress } from 'ahooks'
 import { useDispatch } from 'react-redux'
+import { ActionCreators as UndoActionCreators } from 'redux-undo'
 import {
   removeSelectedComponent,
   copySelectedComponent,
@@ -14,7 +15,12 @@ import {
 const isActiveElementValid = () => {
   const activeElem = document.activeElement
 
-  if (activeElem === document.body) return true // 光标没有 focus 到 input
+  // // 没有增加 dnd-kit 之前
+  // if (activeElem === document.body) return true // 光标没有 focus 到 input
+
+  // 增加了 dnd-kit 以后
+  if (activeElem === document.body) return true
+  if (activeElem?.matches('div[role="button"]')) return true
 }
 
 const useBindCanvasKeyPress = () => {
@@ -48,6 +54,24 @@ const useBindCanvasKeyPress = () => {
   useKeyPress('downarrow', () => {
     if (!isActiveElementValid()) return
     dispatch(selectNextComponent())
+  })
+
+  // 撤销
+  useKeyPress(
+    ['ctrl.z', 'meta.z'],
+    () => {
+      if (!isActiveElementValid()) return
+      dispatch(UndoActionCreators.undo())
+    },
+    {
+      exactMatch: true, // 严格匹配
+    }
+  )
+
+  // 重做
+  useKeyPress(['ctrl.shift.z', 'meta.shift.z'], () => {
+    if (!isActiveElementValid()) return
+    dispatch(UndoActionCreators.redo())
   })
 }
 

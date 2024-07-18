@@ -1,6 +1,7 @@
 import { Suspense } from 'react'
 import Routes from './router'
 import 'antd/dist/reset.css'
+import './App.css'
 
 import { px2remTransformer, StyleProvider } from '@ant-design/cssinjs'
 
