@@ -3,7 +3,7 @@ import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { Button, Space, Divider, message } from 'antd'
 import { BarsOutlined, DeleteOutlined, PlusOutlined, StarOutlined } from '@ant-design/icons'
 import { useRequest } from 'ahooks'
-import { createQuestionService } from '../service/question'
+import { createQuestionService } from '../services/question'
 import styles from './ManageLayout.module.scss'
 
 const ManageLayout: FC = () => {

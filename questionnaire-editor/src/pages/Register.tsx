@@ -5,7 +5,7 @@ import { UserAddOutlined } from '@ant-design/icons'
 import { Link, useNavigate } from 'react-router-dom'
 import { useRequest } from 'ahooks'
 import { LOGIN_PATHNAME } from '../router'
-import { registerService } from '../service/user'
+import { registerService } from '../services/user'
 import styles from './Register.module.scss'
 
 const { Title } = Typography

@@ -6,7 +6,7 @@ import { useRequest } from 'ahooks'
 import ListSearch from '../../components/ListSearch'
 import ListPage from '../../components/ListPage'
 import useLoadingQuestionListData from '../../hooks/useLoadQuestionListData'
-import { updateQuestionService, deleteQuestionsService } from '../../service/question'
+import { updateQuestionService, deleteQuestionsService } from '../../services/question'
 import styles from './common.module.scss'
 
 const { Title } = Typography

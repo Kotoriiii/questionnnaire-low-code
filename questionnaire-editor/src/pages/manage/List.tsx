@@ -8,7 +8,7 @@ import { useRequest, useTitle } from 'ahooks'
 import { useSearchParams } from 'react-router-dom'
 import { LIST_PAGE_SIZE, LIST_SEARCH_PARAM_KEY } from '../../constants'
 import { useDebounceFn } from 'ahooks'
-import { getQuestionListService } from '../../service/question'
+import { getQuestionListService } from '../../services/question'
 import styles from './common.module.scss'
 
 const { Title } = Typography

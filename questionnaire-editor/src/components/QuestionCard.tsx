@@ -9,7 +9,7 @@ import {
   LineChartOutlined,
   StarOutlined,
 } from '@ant-design/icons'
-import { duplicateQuestionService, updateQuestionService } from '../service/question'
+import { duplicateQuestionService, updateQuestionService } from '../services/question'
 import { useRequest } from 'ahooks'
 import styles from './QuestionCard.module.scss'
 

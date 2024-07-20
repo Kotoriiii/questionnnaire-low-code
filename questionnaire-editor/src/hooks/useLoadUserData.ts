@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useRequest } from 'ahooks'
 import { useDispatch } from 'react-redux'
 import useGetUserInfo from './useGetUserInfo'
-import { getUserInfoService } from '../service/user'
+import { getUserInfoService } from '../services/user'
 import { loginReducer } from '../store/userReducer'
 
 const useLoadUserData = () => {

@@ -8,7 +8,7 @@ import EditToolbar from './EditToolbar'
 import useGetPageInfo from '../../../hooks/useGetPageInfo'
 import useGetComponentInfo from '../../../hooks/useGetComponentInfo'
 import { changePageTitle } from '../../../store/pageInfoReducer'
-import { updateQuestionService } from '../../../service/question'
+import { updateQuestionService } from '../../../services/question'
 import styles from './EditHeader.module.scss'
 
 const { Title } = Typography

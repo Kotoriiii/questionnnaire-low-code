@@ -6,7 +6,7 @@ import { Typography, Space, Form, Input, Button, Checkbox, message } from 'antd'
 import { UserAddOutlined } from '@ant-design/icons'
 import { useRequest } from 'ahooks'
 import { MANAGE_INDEX_PATHNAME, REGISTER_PATHNAME } from '../router'
-import { loginService } from '../service/user'
+import { loginService } from '../services/user'
 import { setToken } from '../utils/user-token'
 import styles from './Login.module.scss'
 

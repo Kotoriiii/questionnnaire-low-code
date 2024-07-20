@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom'
 import { useRequest } from 'ahooks'
-import { getQuestionListService } from '../service/question'
+import { getQuestionListService } from '../services/question'
 import {
   LIST_PAGE_PARAM_KEY,
   LIST_PAGE_SIZE,
