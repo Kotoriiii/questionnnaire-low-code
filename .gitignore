@@ -131,3 +131,4 @@ dist
 .pnp.*
 
 stats.html
+*storybook.log
