@@ -12,7 +12,7 @@ function genAnswerInfo(reqBody: BodyType) {
   Object.keys(reqBody).forEach((key) => {
     if (key === "questionId") return;
     answerList.push({
-      componentId: key,
+      componentFeId: key,
       value: reqBody[key],
     });
   });
@@ -23,7 +23,10 @@ function genAnswerInfo(reqBody: BodyType) {
   };
 }
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   if (req.method !== "POST") {
     // 不是 post 则返回错误
     res.status(405).json({ errno: -1, msg: "Method 错误" });
@@ -33,7 +36,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const answerInfo = genAnswerInfo(req.body);
 
   try {
-    // 提交到服务端 Mock
     const resData = await postAnswer(answerInfo);
     if (resData.errno === 0) {
       // 如果提交成功了

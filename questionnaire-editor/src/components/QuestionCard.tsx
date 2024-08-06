@@ -50,7 +50,7 @@ const QuestionCard: FC<PropsType> = props => {
       manual: true,
       onSuccess(result) {
         message.success('复制成功')
-        navigate(`/question/edit/${result.id}`) // 跳转到问卷编辑页
+        navigate(`/question/edit/${result.id || result._id}`) // 跳转到问卷编辑页
       },
     }
   )

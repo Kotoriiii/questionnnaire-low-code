@@ -4,8 +4,9 @@ import { message } from 'antd'
 import { getToken } from '../utils/user-token'
 
 const instance = axios.create({
-  timeout: 10 * 3000,
-  baseURL: 'http://127.0.0.1:3001',
+  baseURL: 'http://127.0.0.1:3005',
+  timeout: 10 * 1000,
+  headers: {},
 })
 
 // request 拦截：每次请求都带上 token

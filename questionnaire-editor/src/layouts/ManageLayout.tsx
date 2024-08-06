@@ -13,7 +13,7 @@ const ManageLayout: FC = () => {
   const { loading, run: handleCreateClick } = useRequest(createQuestionService, {
     manual: true,
     onSuccess(result) {
-      navigate(`/question/edit/${result.id}`)
+      navigate(`/question/edit/${result.id || result._id}`)
       message.success('创建成功')
     },
   })

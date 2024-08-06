@@ -22,7 +22,7 @@ const StatComponent: FC<QuestionRadioStatPropsType> = ({ stat = [] }) => {
           <Pie
             dataKey="count"
             data={stat}
-            cx="55%" // x 轴的偏移
+            cx="40%" // x 轴的偏移
             cy="50%" // y 轴的偏移
             outerRadius="40%" // 饼图的直径
             fill="#8884d8"

@@ -5,10 +5,12 @@ import { useDispatch } from 'react-redux'
 import useGetUserInfo from './useGetUserInfo'
 import { getUserInfoService } from '../services/user'
 import { loginReducer } from '../store/userReducer'
+import { getToken } from '../utils/user-token'
 
 const useLoadUserData = () => {
   const dispatch = useDispatch()
   const [waitingUserData, setWaitingUserData] = useState(true)
+  const token = getToken()
 
   // ajax 加载用户信息
   const { run } = useRequest(getUserInfoService, {
@@ -30,7 +32,7 @@ const useLoadUserData = () => {
       return
     }
     run() // 如果 redux store 中没有用户信息，则进行加载
-  }, [username])
+  }, [username, token])
 
   return { waitingUserData }
 }

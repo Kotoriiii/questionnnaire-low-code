@@ -16,7 +16,6 @@ const useNavPage = (waitingUserData: boolean) => {
 
   useEffect(() => {
     if (waitingUserData) return
-
     // 已经登录了
     if (username) {
       if (isLoginOrRegister(pathname)) {

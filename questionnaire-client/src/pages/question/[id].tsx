@@ -3,17 +3,6 @@ import PageWrapper from "@/components/PageWrapper";
 import { getQuestionById } from "@/services/question";
 import { getComponent } from "@/components/QuestionComponents";
 import styles from "@/styles/Question.module.scss";
-import dynamic from "next/dynamic";
-
-// dynamic(
-//   () => {
-//     console.log("执行");
-//     return import("amfe-flexible");
-//   },
-//   {
-//     ssr: false,
-//   }
-// );
 
 type PropsType = {
   errno: number;
