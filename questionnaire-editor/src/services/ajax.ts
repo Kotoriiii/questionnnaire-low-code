@@ -4,7 +4,7 @@ import { message } from 'antd'
 import { getToken } from '../utils/user-token'
 
 const instance = axios.create({
-  baseURL: 'http://127.0.0.1:3005',
+  baseURL: import.meta.env.VITE_REQUEST_URL,
   timeout: 10 * 1000,
   headers: {},
 })

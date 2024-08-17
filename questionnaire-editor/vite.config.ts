@@ -1,11 +1,10 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { visualizer } from 'rollup-plugin-visualizer'
-import viteCompression from 'vite-plugin-compression'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), visualizer({ open: true })],
+  plugins: [react(), visualizer({ open: false })],
   build: {
     rollupOptions: {
       output: {
@@ -19,19 +18,11 @@ export default defineConfig({
           }
         },
       },
-      plugins: [
-        viteCompression({
-          verbose: true, // 是否在控制台中输出压缩结果
-          disable: false,
-          threshold: 10240, // 如果体积大于阈值，将被压缩，单位为b，体积过小时请不要压缩，以免适得其反
-          algorithm: 'gzip', // 压缩算法，可选['gzip'，' brotliccompress '，'deflate '，'deflateRaw']
-          ext: '.gz',
-          deleteOriginFile: false, // 源文件压缩后是否删除
-        }),
-      ],
     },
   },
   esbuild: {
     drop: ['console', 'debugger'],
   },
+  base:
+    process.env.NODE_ENV === 'production' ? 'https://static.jasonlidevelop.com/lowcode/assets' : '',
 })

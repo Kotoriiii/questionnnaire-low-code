@@ -1,4 +1,4 @@
-import { lazy } from 'react'
+/* eslint-disable react-refresh/only-export-components */
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 
 import MainLayout from '../layouts/MainLayout'
@@ -11,66 +11,69 @@ import NotFound from '../pages/NotFound'
 import List from '../pages/manage/List'
 import Trash from '../pages/manage/Trash'
 import Star from '../pages/manage/Star'
-const Edit = lazy(() => import('../pages/question/Edit'))
-const Stat = lazy(() => import('../pages/question/Stat'))
+import Edit from '../pages/question/Edit/index'
+import Stat from '../pages/question/Stat'
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <MainLayout />,
-    children: [
-      {
-        path: '/',
-        element: <Home />,
-      },
-      {
-        path: 'login',
-        element: <Login />,
-      },
-      {
-        path: 'register',
-        element: <Register />,
-      },
-      {
-        path: 'manage',
-        element: <ManageLayout />,
-        children: [
-          {
-            path: 'list',
-            element: <List />,
-          },
-          {
-            path: 'star',
-            element: <Star />,
-          },
-          {
-            path: 'trash',
-            element: <Trash />,
-          },
-        ],
-      },
-      {
-        path: '*', // 404 路由配置，都写在最后（兜底）
-        element: <NotFound />,
-      },
-    ],
-  },
-  {
-    path: 'question',
-    element: <QuestionLayout />,
-    children: [
-      {
-        path: 'edit/:id',
-        element: <Edit />,
-      },
-      {
-        path: 'stat/:id', // statistic 统计
-        element: <Stat />,
-      },
-    ],
-  },
-])
-
+const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: <MainLayout />,
+      children: [
+        {
+          path: '/',
+          element: <Home />,
+        },
+        {
+          path: 'login',
+          element: <Login />,
+        },
+        {
+          path: 'register',
+          element: <Register />,
+        },
+        {
+          path: 'manage',
+          element: <ManageLayout />,
+          children: [
+            {
+              path: 'list',
+              element: <List />,
+            },
+            {
+              path: 'star',
+              element: <Star />,
+            },
+            {
+              path: 'trash',
+              element: <Trash />,
+            },
+          ],
+        },
+        {
+          path: '*', // 404 路由配置，都写在最后（兜底）
+          element: <NotFound />,
+        },
+      ],
+    },
+    {
+      path: 'question',
+      element: <QuestionLayout />,
+      children: [
+        {
+          path: 'edit/:id',
+          element: <Edit />,
+        },
+        {
+          path: 'stat/:id', // statistic 统计
+          element: <Stat />,
+        },
+      ],
+    },
+  ],
+  { basename: import.meta.env.MODE === 'production' ? '/lowcode' : '' }
+)
+console.log(import.meta.env)
 const Routes = () => {
   return <RouterProvider router={router} />
 }

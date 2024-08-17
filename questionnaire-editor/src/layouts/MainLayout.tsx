@@ -33,7 +33,8 @@ const MainLayout: FC = () => {
         )}
       </Content>
       <Footer className={styles.footer}>
-        问卷编辑器 &copy;2024 - present. Created by JasonLiii
+        问卷编辑器 &copy;2024 - present. Created by JasonLiii{' '}
+        <a href="https://beian.miit.gov.cn">粤ICP备2024289242号</a>
       </Footer>
     </Layout>
   )

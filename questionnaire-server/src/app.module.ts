@@ -7,20 +7,24 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { AnswerModule } from './answer/answer.module';
 import { StatModule } from './stat/stat.module';
+import { HealthzModule } from './healthz/healthz.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: ['.env.development'],
+      envFilePath: [
+        process.env[Config.MODE] === 'development'
+          ? '.env.development'
+          : '.env.production',
+      ],
     }),
-    MongooseModule.forRoot(
-      `mongodb://${process.env[Config.MONGO_HOST]}:${process.env[Config.MONGO_PORT]}/${process.env[Config.MONGO_DATABASE]}`,
-    ),
+    MongooseModule.forRoot(process.env[Config.MONGO_URL]),
     QuestionModule,
     UserModule,
     AuthModule,
     AnswerModule,
     StatModule,
+    HealthzModule,
   ],
   controllers: [],
   providers: [],

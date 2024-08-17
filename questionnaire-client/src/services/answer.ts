@@ -4,7 +4,7 @@ import { AnswerInfoType, ResponseType } from "./type";
 export async function postAnswer(
   answerInfo: AnswerInfoType
 ): Promise<ResponseType> {
-  const url = "/api/answer";
+  const url = "/answer";
   const data = await post(url, answerInfo);
   return data;
 }

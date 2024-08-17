@@ -1,6 +1,6 @@
 import { AnswerInfoType } from "./type";
 
-const HOST = process.env.MOCK_HOST;
+const HOST = process.env.REQUEST_HOST;
 
 export async function get(url: string) {
   const res = await fetch(`${HOST}${url}`);
