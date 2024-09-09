@@ -1,3 +1,4 @@
+import * as path from 'path';
 import { Module } from '@nestjs/common';
 import { QuestionModule } from './question/question.module';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -12,11 +13,10 @@ import { HealthzModule } from './healthz/healthz.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: [
+      envFilePath:
         process.env[Config.MODE] === 'development'
-          ? '.env.development'
-          : '.env.production',
-      ],
+          ? path.join(__dirname, '../.env.development')
+          : path.join(__dirname, '../.env.production'),
     }),
     MongooseModule.forRoot(process.env[Config.MONGO_URL]),
     QuestionModule,

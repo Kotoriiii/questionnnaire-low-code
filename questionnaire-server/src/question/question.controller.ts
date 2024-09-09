@@ -13,6 +13,7 @@ import { Request as ExpressRequest } from 'express';
 import { QuestionService } from './question.service';
 import { UpdateQuestionDto } from './dto/update-question.dto';
 import { Public } from 'src/auth/decorators/public.decorator';
+import { DeleteQuestionDto } from './dto/delete-question.dto';
 
 @Controller('question')
 export class QuestionController {
@@ -80,7 +81,10 @@ export class QuestionController {
   }
 
   @Delete()
-  deleteMany(@Body() body, @Request() req: ExpressRequest) {
+  deleteManyQuestion(
+    @Body() body: DeleteQuestionDto,
+    @Request() req: ExpressRequest,
+  ) {
     const { username } = req.user;
     const { ids = [] } = body;
     return this.questionService.deleteMany(ids, username);
