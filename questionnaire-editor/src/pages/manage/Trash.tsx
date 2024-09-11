@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FC, useState } from 'react'
 import { useTitle } from 'ahooks'
 import { Typography, Empty, Table, Tag, Space, Button, Modal, Spin, message } from 'antd'
@@ -101,7 +102,7 @@ const Trash: FC = () => {
           dataSource={list}
           columns={tableColumns}
           pagination={false}
-          rowKey={q => q._id}
+          rowKey={q => (q as any)._id}
           rowSelection={{
             type: 'checkbox',
             onChange: selectedRowKeys => {
