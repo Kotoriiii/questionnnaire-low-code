@@ -38,7 +38,8 @@ export default defineConfig({
           const libraryChunkMap: Record<string, string> = {
             antd: 'antd',
             recharts: 'recharts',
-            rc: 'rc',
+            dnd: 'dnd',
+            'react-dom': 'react-dom',
             react: 'react',
           }
 
