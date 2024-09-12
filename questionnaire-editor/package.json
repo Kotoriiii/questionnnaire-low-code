@@ -13,7 +13,8 @@
     "test": "vitest --watch=false",
     "test-converage": "vitest run --coverage",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "upload": "tsx ./upload/index.ts"
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.21.1",
@@ -50,6 +51,7 @@
     "@storybook/test": "^8.1.4",
     "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^16.0.0",
+    "@types/ali-oss": "^6.16.11",
     "@types/lodash.clonedeep": "^4.5.9",
     "@types/postcss-pxtorem": "^6.0.3",
     "@types/react": "^18.3.3",
@@ -58,7 +60,9 @@
     "@typescript-eslint/parser": "^7.13.1",
     "@vitejs/plugin-react": "^4.3.1",
     "@vitest/coverage-v8": "^2.0.4",
+    "ali-oss": "^6.21.0",
     "autoprefixer": "^10.4.19",
+    "dotenv": "^16.4.5",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
@@ -71,6 +75,7 @@
     "prettier": "^3.3.2",
     "rollup-plugin-visualizer": "^5.12.0",
     "storybook": "^8.1.4",
+    "tsx": "^4.19.1",
     "typescript": "^5.2.2",
     "vite": "^5.3.1",
     "vite-plugin-html": "^3.2.2",
