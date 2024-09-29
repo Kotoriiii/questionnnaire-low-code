@@ -135,3 +135,5 @@ stats.html
 *storybook.log
 
 .DS_Store
+
+.vscode
